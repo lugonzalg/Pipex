@@ -85,8 +85,8 @@ void	init_data(t_data *data, char **envp, int argc)
 	}
 	data->n = argc - 3;
 	data->pid = (int *)malloc(sizeof(int) * data->n);
-	data->fd = (int **)malloc(sizeof(int *) * (data->n + 2));
-	data->fd[data->n + 1] = NULL;
+	data->fd = (int **)malloc(sizeof(int *) * (data->n + 1));
+	data->fd[data->n] = NULL;
 	i = -1;
 	while (++i < data->n + 1)
 	{

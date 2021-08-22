@@ -72,9 +72,8 @@ void	free_data(t_data *data)
 		free(data->stored[i]);
 	free(data->stored);
 	i = -1;
-	while (data->fd[i++])
+	while (++i < data->n + 1)
 		free(data->fd[i]);
 	free(data->fd);
-	i = -1;
 	free(data->pid);
 }

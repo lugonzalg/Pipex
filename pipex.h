@@ -29,7 +29,6 @@ void	ft_rare_case(int *i, char *str, char *c);
 void	error_signal_0(int signal, char **chain);
 void	error_signal_1(int signal);
 void	init_data(t_data *data, char **envp, int argc);
-char	**ft_rare_split(const char *s, char c);
 char	**ft_split_4(const char *s, char c);
 void	free_data(t_data *data);
 
