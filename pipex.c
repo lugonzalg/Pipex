@@ -11,13 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include <signal.h>
 #include <unistd.h>
 #include "Libft/include/libft.h"
-#include "Libft/include/ft_printf.h"
 #include <fcntl.h>
-#include <sys/wait.h>
 #include "pipex.h"
 
 static void	set_cmd(char *argv, t_data *data)

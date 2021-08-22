@@ -11,9 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "Libft/include/libft.h"
-#include "Libft/include/ft_printf.h"
 #include "pipex.h"
 
 static char	**ft_frlloc(char **tab)

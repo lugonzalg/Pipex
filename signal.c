@@ -12,7 +12,6 @@
 
 #include "pipex.h"
 #include "Libft/include/libft.h"
-#include "Libft/include/ft_printf.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -59,10 +58,7 @@ void	error_signal_0(int signal, char **chain)
 void	error_signal_1(int signal)
 {
 	if (signal < 0)
-	{
-		ft_printf("\nABORT_1");
 		exit (0);
-	}
 	else
 		return ;
 }
