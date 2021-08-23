@@ -33,7 +33,7 @@ static void	set_cmd(char *argv, t_data *data)
 		else
 			break ;
 	}
-	error_signal_0(data->signal, data->cmd);
+	error_signal_0(data->signal);
 }
 
 static void	multi_pipe(t_data *data, char **argv, int n)
@@ -114,5 +114,6 @@ int	main(int argc, char **argv, char **envp)
 				multi_pipe(&data, argv, i);
 		}
 	}
+	i = -1;
 	free_data(&data);
 }

@@ -26,7 +26,7 @@ typedef struct s_data {
 }	t_data;
 
 void	ft_rare_case(int *i, char *str, char *c);
-void	error_signal_0(int signal, char **chain);
+void	error_signal_0(int signal);
 void	error_signal_1(int signal);
 void	init_data(t_data *data, char **envp, int argc);
 char	**ft_split_4(const char *s, char c);

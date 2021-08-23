@@ -34,23 +34,10 @@ void	ft_rare_case(int *i, char *str, char *c)
 	}
 }
 
-void	free_chain(void **chain)
-{
-	int	i;
-
-	i = -1;
-	while (chain[++i])
-		free(chain[i]);
-	free(chain);
-}
-
-void	error_signal_0(int signal, char **chain)
+void	error_signal_0(int signal)
 {
 	if (signal < 0)
-	{
-		free_chain((void **)chain);
 		exit (0);
-	}
 	else
 		return ;
 }
@@ -73,7 +60,9 @@ void	free_data(t_data *data)
 	free(data->stored);
 	i = -1;
 	while (++i < data->n + 1)
+	{
 		free(data->fd[i]);
+	}
 	free(data->fd);
 	free(data->pid);
 }

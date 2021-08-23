@@ -1,7 +1,7 @@
 NAME=pipex
 
 CC= Clang
-CFLAGS = -Wall -Werror -Wextra #-fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
 RM= rm -rf
 AR= ar rcs
 
