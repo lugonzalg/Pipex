@@ -63,7 +63,8 @@ void	init_fd(t_data *data, int argc, char **argv)
 	error_signal_1(data->fd[0][0]);
 	close(data->fd[data->n][1]);
 	data->fd[data->n][1]
-		= open(argv[argc - 1], O_WRONLY | O_CREAT, 0777);
+		= open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT, 0755);
+	error_signal_1(data->fd[data->n][1]);
 }
 
 void	init_data(t_data *data, char **envp, int argc)
@@ -86,7 +87,6 @@ void	init_data(t_data *data, char **envp, int argc)
 	data->n = argc - 3;
 	data->pid = (int *)malloc(sizeof(int) * data->n);
 	data->fd = (int **)malloc(sizeof(int *) * (data->n + 1));
-	data->fd[data->n] = NULL;
 	i = -1;
 	while (++i < data->n + 1)
 	{
@@ -102,18 +102,14 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc < 5)
 		exit (0);
-	else
-	{	
-		init_data(&data, envp, argc);
-		init_fd(&data, argc, argv);
-		i = -1;
-		while (++i < data.n)
-		{
-			data.pid[i] = fork();
-			if (data.pid[i] == 0)
-				multi_pipe(&data, argv, i);
-		}
-	}
+	init_data(&data, envp, argc);
+	init_fd(&data, argc, argv);
 	i = -1;
+	while (++i < data.n)
+	{
+		data.pid[i] = fork();
+		if (data.pid[i] == 0)
+			multi_pipe(&data, argv, i);
+	}
 	free_data(&data);
 }
