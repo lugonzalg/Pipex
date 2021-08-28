@@ -27,7 +27,7 @@ static int	ft_power_num(unsigned int num)
 	return (i);
 }
 
-static char	*ft_putnbr(unsigned int	num, char *str)
+static char	*ft_putnbr(unsigned int num, char *str)
 {
 	unsigned int	i;
 	unsigned int	size;

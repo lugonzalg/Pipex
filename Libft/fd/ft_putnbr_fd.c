@@ -9,7 +9,9 @@
 /*Updated: 2021/06/02 18:31:42 by lugonzal               ###   ########.fr    */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
+
 static void	ft_write(unsigned int n, int fd)
 {
 	if (n > 9)
