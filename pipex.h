@@ -25,9 +25,11 @@ typedef struct s_data {
 	pid_t	*pid;
 }	t_data;
 
+void	set_cmd(char *argv, t_data *data);
+void	check_cmd(t_data *data, int argc, char **argv);
 void	ft_rare_case(int *i, char *str, char *c);
-void	error_signal_0(int signal);
-void	error_signal_1(int signal);
+void	error_signal_0(int signal, t_data **data);
+void	error_signal_1(int signal, t_data **data);
 void	init_data(t_data *data, char **envp, int argc);
 char	**ft_split_4(const char *s, char c);
 void	free_data(t_data *data);

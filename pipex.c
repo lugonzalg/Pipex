@@ -16,7 +16,7 @@
 #include <fcntl.h>
 #include "pipex.h"
 
-static void	set_cmd(char *argv, t_data *data)
+void	set_cmd(char *argv, t_data *data)
 {
 	int	i;
 
@@ -33,7 +33,14 @@ static void	set_cmd(char *argv, t_data *data)
 		else
 			break ;
 	}
-	error_signal_0(data->signal);
+	if (data->signal < 0)
+	{
+		i = -1;
+		while (data->cmd[++i])
+			free(data->cmd[i]);
+		free(data->cmd);
+	}
+	error_signal_0(data->signal, &data);
 }
 
 static void	multi_pipe(t_data *data, char **argv, int n)
@@ -56,15 +63,15 @@ static void	multi_pipe(t_data *data, char **argv, int n)
 	execve(data->path, data->cmd, NULL);
 }
 
-void	init_fd(t_data *data, int argc, char **argv)
+static void	init_fd(t_data *data, int argc, char **argv)
 {
 	close(data->fd[0][0]);
 	data->fd[0][0] = open(argv[1], O_RDONLY);
-	error_signal_1(data->fd[0][0]);
+	error_signal_1(data->fd[0][0], &data);
 	close(data->fd[data->n][1]);
 	data->fd[data->n][1]
 		= open(argv[argc - 1], O_RDWR | O_TRUNC | O_CREAT, 0755);
-	error_signal_1(data->fd[data->n][1]);
+	error_signal_1(data->fd[data->n][1], &data);
 }
 
 void	init_data(t_data *data, char **envp, int argc)
@@ -91,7 +98,7 @@ void	init_data(t_data *data, char **envp, int argc)
 	while (++i < data->n + 1)
 	{
 		data->fd[i] = (int *)malloc(sizeof(int) * 2);
-		error_signal_1(pipe(data->fd[i]));
+		error_signal_1(pipe(data->fd[i]), &data);
 	}
 }
 
@@ -103,6 +110,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc < 5)
 		exit (0);
 	init_data(&data, envp, argc);
+	check_cmd(&data, argc, argv);
 	init_fd(&data, argc, argv);
 	i = -1;
 	while (++i < data.n)
