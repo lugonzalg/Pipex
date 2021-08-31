@@ -110,7 +110,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc < 5)
 		exit (0);
 	init_data(&data, envp, argc);
-	check_cmd(&data, argc, argv);
+	//check_cmd(&data, argc, argv);
 	init_fd(&data, argc, argv);
 	i = -1;
 	while (++i < data.n)
